@@ -1,7 +1,6 @@
 
 // PIC16F676 Configuration Bit Settings
 
-// 'C' source line config statements
 
 #include <xc.h>
 __EEPROM_DATA(0X00,0X00,0X09,0X00,0X00,0X00,0X00,0X00);
@@ -18,12 +17,6 @@ __EEPROM_DATA(0X00,0X00,0X09,0X00,0X00,0X00,0X00,0X00);
 #pragma config CP = OFF         // Code Protection bit (Program Memory code protection is disabled)
 #pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
 
-
-//------------------------------------------------------------------------------------------------
-/* 3-wire Serial LCD using 74HC595
-    Jayanth Devarayanadurga
-    08/05/2013
-*/
 
 #define _LCD_FIRST_ROW                         0x80         //Move cursor to the 1st row
 #define _LCD_SECOND_ROW                 0xC0         //Move cursor to the 2nd row
@@ -251,20 +244,6 @@ int checktemp()
     }
      return temp;
 }
-/*void Write_EEPROM(unsigned char a1,unsigned char a2,unsigned int data_value)//Writing data into specified location in EEPROM
-{
-	eeprom_write(a1,(data_value/10));	//write first digit of data
-	eeprom_write(a2,(data_value%10));	//write second digit of data
-}
-
-unsigned int Read_EEPROM(unsigned char b1,unsigned char b2)//Reading data from specified location in EEPROM
-{
-    unsigned int c1=0,c2=0;
-	c1=eeprom_read(b1);		//read first digit of data
-	c2=eeprom_read(b2);		//read second digit of data
-	return ((c1*10)+c2); 	//return the data read
-}*/
-
 
 void main() {
         
@@ -281,7 +260,7 @@ void main() {
     int tempval = 0;
     char storedval = 0;
     char b1=0,b2=0;
-     //storedval = Read_EEPROM(0,1);
+
     b1=eeprom_read(0);		//read first digit of data
 	b2=eeprom_read(1);		//read second digit of data
 	storedval = ((b1*10)+b2); 	//return the data read
